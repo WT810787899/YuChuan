@@ -5,7 +5,7 @@
 param([int]$WaitSeconds = 20)
 $ErrorActionPreference = 'Continue'
 $root = Split-Path $PSScriptRoot -Parent
-$exe = "$root\build\windows\x64\runner\Release\rust_flutter_ui.exe"
+$exe = "$root\build\windows\x64\runner\Release\雨传.exe"
 if (-not (Test-Path $exe)) { throw '先构建：.\scripts\build_windows.ps1' }
 
 $temp = $env:TEMP

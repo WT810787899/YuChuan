@@ -20,4 +20,4 @@ Start-Sleep -Seconds 1
 & flutter build windows
 if ($LASTEXITCODE -ne 0) { throw 'flutter build windows failed' }
 
-Write-Host "OK: $root\build\windows\x64\runner\Release\rust_flutter_ui.exe"
+Write-Host "OK: $root\build\windows\x64\runner\Release\雨传.exe"

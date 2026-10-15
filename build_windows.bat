@@ -38,6 +38,8 @@ cargo build --manifest-path rust_builder\Cargo.toml --target x86_64-pc-windows-m
 if errorlevel 1 goto :err
 echo [3/3] Flutter build...
 REM Kill a running instance so MSVC can overwrite the exe (otherwise LINK : fatal error LNK1104)
+chcp 65001 >nul 2>&1
+taskkill /f /im 雨传.exe >nul 2>&1
 taskkill /f /im rust_flutter_ui.exe >nul 2>&1
 call "%FLUTTER_BIN%" build windows 2>&1
 if errorlevel 1 goto :err

@@ -4,7 +4,12 @@ project(rust_flutter_ui LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "rust_flutter_ui")
+#
+# 必须是 ASCII：CMake 的 target 名不支持非 ASCII，写成 "雨传" 会直接报
+# `Cannot specify compile definitions for target "雨传" which is not built`。
+# 发布版里那个「雨传.exe」是由打包脚本重命名得到的（见 scripts/build_windows.ps1），
+# 这样 `flutter run -d windows` 也仍然能按 ASCII 名找到可执行文件。
+set(BINARY_NAME "YuChuan")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

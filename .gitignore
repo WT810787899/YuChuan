@@ -90,3 +90,6 @@ icon.psd
 /修bug.md
 /核验.MD
 /scripts/verify_offline_send.md
+
+# 发布产物（可重新生成，不进仓库）
+/dist/

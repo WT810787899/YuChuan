@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "YuChuan" "\0"
-            VALUE "FileDescription", "YuChuan - LAN Chat" "\0"
+            VALUE "FileDescription", "雨传 YuChuan - 局域网聊天 / 传文件工具" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "rust_flutter_ui" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "rust_flutter_ui.exe" "\0"
-            VALUE "ProductName", "YuChuan" "\0"
+            VALUE "InternalName", "雨传" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 WT810787899" "\0"
+            VALUE "OriginalFilename", "雨传.exe" "\0"
+            VALUE "ProductName", "雨传 YuChuan" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
