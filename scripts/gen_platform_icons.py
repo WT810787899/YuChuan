@@ -1,7 +1,14 @@
-"""从 icon.png 生成 Android / Windows 的应用图标。
+"""把 icon.png 派生成 Android / Windows 的平台图标。
 
 用法：
-    python scripts/gen_icons.py
+    python scripts/gen_platform_icons.py
+
+和 scripts/gen_icon.py 的区别（别搞混）：
+- `gen_icon.py` 是**画**图标的：用代码绘制云+雨+纸飞机的图形，产出设计稿。
+  那是早期的靛紫渐变版本；现在的 `icon.png` 是设计师版本（绿色，另有 icon.psd），
+  所以那个脚本已不再对应仓库里的图标。
+- **本脚本**是**派生**的：把已经定稿的 `icon.png`（1024x1024）缩放到各平台需要的
+  尺寸与格式。换图标只需替换 icon.png，然后重跑本脚本。
 
 为什么手写而不用 flutter_launcher_icons：
 - 本项目只出 Android + Windows 两端，目标路径固定；
