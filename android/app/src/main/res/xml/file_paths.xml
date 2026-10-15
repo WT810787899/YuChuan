@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 雨传：向其它应用（浏览器/安装器/查看器）临时暴露收件文件 -->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 应用私有目录（收件目录 chat/downloads 在其下） -->
+    <files-path name="internal_files" path="." />
+    <cache-path name="internal_cache" path="." />
+    <external-files-path name="external_files" path="." />
+</paths>

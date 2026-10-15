@@ -1,0 +1,25 @@
+[package]
+name = "rust_flutter_ui_native"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+# flutter_rust_bridge 的 #[frb(...)] 宏展开会生成 cfg(frb_expand)，
+# 声明该 cfg 以消除 rustc 1.80+ 的 unexpected_cfgs 警告（26 条噪音）
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }
+
+[dependencies]
+flutter_rust_bridge = "=2.8.0"
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = "0.4"
+uuid = { version = "1.0", features = ["v4"] }
+socket2 = { version = "0.6", features = ["all"] }
+if-addrs = "0.15.0"
+blake3 = "1.8.7"
+libc = "0.2.190"
+windows-sys = { version = "0.61.2", features = ["Win32_Foundation", "Win32_Storage_FileSystem"] }

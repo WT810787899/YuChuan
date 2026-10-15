@@ -1,0 +1,81 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# ── 本项目追加 ──────────────────────────────────────────────
+
+# Rust 构建产物（cargo 的 target/ 非常大，且完全可由源码重建）
+/rust_builder/target/
+**/target/
+
+# Flutter 构建产物：根级 /build/ 已在上方忽略，这里覆盖子目录里的
+# （如跑测试会生成 rust_builder/build/）。注意 `build/` 只匹配名为 build 的
+# 目录，不会误伤 build_android.bat / cargokit/build_tool/。
+build/
+
+# Flutter / 插件生成的临时链接与状态
+windows/flutter/ephemeral/
+android/.gradle/
+android/local.properties
+.flutter
+.flutter_tool_state
+
+# 工作过程产物：快照备份、AI 会话、临时日志（*.log 已在上面忽略）
+.leadbak/
+.superpowers/
+.opencode/
+.tf.log
+
+# 图标设计源文件：10MB 的 PSD，仓库只需要 icon.png（生成的图标由脚本产出）
+icon.psd
+
+# 根目录的历史截图（正式展示图统一放 Screenshots/）
+/screenshot_*.png
+
+# 本地备份 / 损坏残留（保留在工作区做恢复点，但不进仓库）
+*.bak
+*.CORRUPT.*
+*.orig
+*.rej

@@ -1,0 +1,4 @@
+rust_input: crate::api
+rust_root: rust_builder
+dart_output: lib/src/rust
+c_output: rust_builder/rust_flutter_bridge.h
