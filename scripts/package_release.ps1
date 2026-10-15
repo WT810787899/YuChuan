@@ -67,12 +67,16 @@ $readme = @"
 Set-Content -Path (Join-Path $stage "使用说明.txt") -Value $readme -Encoding UTF8
 
 # ---- 打 zip ----
-$zip = Join-Path $DistDir "雨传-$Version-windows-portable.zip"
+# 产物文件名必须是 **纯 ASCII**：GitHub Release 的资源名会把非 ASCII 字符丢掉
+# （实测：curl 正确发出 ?name=%E9%9B%A8%E4%BC%A0-probe.txt，GitHub 存下来却是
+#  "-probe.txt"）。所以下载文件名用 YuChuan-*，
+# 而 zip **内部**仍然是「雨传\雨传.exe」，解压后看到的还是中文名，不影响使用。
+$zip = Join-Path $DistDir "YuChuan-$Version-windows-portable.zip"
 if (Test-Path $zip) { Remove-Item -Force $zip }
 Compress-Archive -Path $stage -DestinationPath $zip -CompressionLevel Optimal
 
 # ---- 安卓安装包 ----
-$apkDst = Join-Path $DistDir "雨传-$Version-android.apk"
+$apkDst = Join-Path $DistDir "YuChuan-$Version-android.apk"
 Copy-Item -Force $apkSrc $apkDst
 
 # ---- 汇报 ----
