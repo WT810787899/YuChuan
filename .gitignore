@@ -79,3 +79,14 @@ icon.psd
 *.CORRUPT.*
 *.orig
 *.rej
+
+# ── 开发阶段的过程文档：不进仓库（本地仍保留） ──────────────
+# 需求 / 任务拆解 / 审计 / 核验 / 修 bug 记录 / 计划书，都属于开发过程产物，
+# 对使用者没有价值，公开仓库只需要 README。
+/docs/
+/AUDIT_REPORT.md
+/CHANGES_AUDIT.md
+/需求.MD
+/修bug.md
+/核验.MD
+/scripts/verify_offline_send.md
