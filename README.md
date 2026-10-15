@@ -96,3 +96,65 @@ Android · Windows
 |------|------|
 | Android（arm64-v8a） | 支持 |
 | Windows | 支持 |
+
+## 文件结构
+
+```
+YuChuan/
+├─ icon.png                     应用图标源图（1024×1024）
+├─ lib/                         Flutter 侧（界面 + 状态）
+│  ├─ main.dart                 入口：初始化、生命周期、OSD 桥接
+│  ├─ app_state.dart            核心状态机：会话/消息/在线/传输/设置
+│  ├─ appearance.dart           外观状态：主题色、壁纸、透明度
+│  ├─ models.dart               数据模型：设备 / 会话 / 消息
+│  ├─ ui/                       界面
+│  │  ├─ chat_list.dart         消息列表页
+│  │  ├─ chat_page.dart         会话页（气泡、输入栏、传输卡片）
+│  │  ├─ files_page.dart        文件 TAB（网格/列表、框选、排序、筛选）
+│  │  ├─ discovery.dart         设备发现与配对
+│  │  ├─ settings_page.dart     设置（主题与壁纸/界面/通知/发现与连接/传输/关于）
+│  │  ├─ menus.dart             统一菜单（桌面弹出 / 安卓底部弹层）
+│  │  ├─ osd_toast.dart         OSD 提示胶囊
+│  │  ├─ pairing_dialog.dart    配对确认窗
+│  │  ├─ open_with_sheet.dart   「打开方式」选择
+│  │  └─ …                      标题栏 / 链接识别 / 选色 / 设备图标 / 引导
+│  ├─ services/                 对 Rust 的封装，隔离平台差异
+│  │  ├─ chat_service.dart      聊天与消息
+│  │  ├─ discovery_service.dart 设备发现
+│  │  ├─ pairing_service.dart   配对
+│  │  ├─ transfer_service.dart  文件传输
+│  │  ├─ platform_channel.dart  系统能力（打开文件/打开方式/安装包/保活）
+│  │  └─ single_instance.dart   PC 单实例
+│  └─ src/rust/                 frb 生成的桥接代码（勿手改）
+│
+├─ rust_builder/                Rust 侧（网络与存储的实现）
+│  └─ src/
+│     ├─ api/                   导出给 Dart 的接口
+│     │  ├─ chat.rs             会话 / 消息 / 发件箱
+│     │  ├─ discovery.rs        发现与设备
+│     │  ├─ pairing.rs          配对
+│     │  └─ transfer.rs         传输控制
+│     ├─ backend/               真正的实现
+│     │  ├─ discovery.rs        组播发现
+│     │  ├─ session.rs          TCP 会话：握手、心跳、退避重连
+│     │  ├─ protocol.rs         帧格式
+│     │  ├─ pairing.rs          配对状态机
+│     │  ├─ storage.rs          聊天仓库 / 发件箱 / 联系人落盘
+│     │  └─ transfer.rs         分块传输、流控、断点续传
+│     └─ frb_generated.rs       frb 生成（勿手改）
+│
+├─ android/                     安卓壳
+│  └─ app/src/main/kotlin/com/yuchuan/app/
+│     ├─ MainActivity.kt        平台通道 + 系统分享入口
+│     └─ TransferService.kt     前台服务（后台保活）
+├─ windows/                     Windows 壳（标准 Flutter runner）
+├─ test/                        测试
+├─ scripts/                     构建与辅助脚本
+├─ Screenshots/                 README 截图
+└─ flutter_rust_bridge.yaml     桥接代码生成配置
+```
+
+**一句话分工**：Flutter 只管画界面和存状态，网络收发、断点续传、消息落盘全部由
+Rust 实现，两边通过 `flutter_rust_bridge` 调用。
+
+想深入了解各模块职责、关键流程与本地数据文件，见 **[ARCHITECTURE.md](ARCHITECTURE.md)**。
